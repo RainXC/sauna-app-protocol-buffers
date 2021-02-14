@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "client.proto";
+
+package blog;
+
+option go_package = "./saunapb";
+
+message Event {
+  string id = 1;
+  string datetime = 2;
+  map<string, Client> clients = 3;
+}
+
+message CreateEventRequest {
+  Event event = 1;
+}
+message CreateEventResponse {
+  Event event = 1;
+}
+
+message ReadEventRequest {
+  string event_id = 1;
+}
+message ReadEventResponse {
+  Event event = 1;
+}
+
+message UpdateEventRequest {
+  Event event = 1;
+}
+message UpdateEventResponse {
+  Event event = 1;
+}
+
+message DeleteEventRequest {
+  string event_id = 1;
+}
+message DeleteEventResponse {
+  string event_id = 1;
+}
+
+message ListEventRequest {
+}
+message ListEventResponse {
+  map<string, Event> events = 1;
+}
+
+service EventService {
+  rpc Create (CreateEventRequest) returns (CreateEventResponse);
+  rpc Read (ReadEventRequest) returns (ReadEventResponse);
+  rpc Update (UpdateEventRequest) returns (UpdateEventResponse);
+  rpc Delete (DeleteEventRequest) returns (DeleteEventResponse);
+  rpc List (ListEventRequest) returns (ListEventResponse);
+}
+
+

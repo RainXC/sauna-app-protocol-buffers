@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package blog;
+
+option go_package = "./saunapb";
+
+message Client {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string telegram_id = 4;
+}
+
+message CreateClientRequest {
+  Client client = 1;
+}
+message CreateClientResponse {
+  Client client = 1;
+}
+
+message ReadClientRequest {
+  string client_id = 1;
+}
+message ReadClientResponse {
+  Client client = 1;
+}
+
+message UpdateClientRequest {
+  Client client = 1;
+}
+message UpdateClientResponse {
+  Client client = 1;
+}
+
+message DeleteClientRequest {
+  string client_id = 1;
+}
+message DeleteClientResponse {
+  string client_id = 1;
+}
+
+message ListClientRequest {
+}
+message ListClientResponse {
+  map<string, Client> clients = 1;
+}
+
+service ClientService {
+  rpc Create (CreateClientRequest) returns (CreateClientResponse);
+  rpc Read (ReadClientRequest) returns (ReadClientResponse);
+  rpc Update (UpdateClientRequest) returns (UpdateClientResponse);
+  rpc Delete (DeleteClientRequest) returns (DeleteClientResponse);
+  rpc List (ListClientRequest) returns (ListClientResponse);
+}
+
+
