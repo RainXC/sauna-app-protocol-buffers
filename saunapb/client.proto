@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package blog;
+package sauna;
 
 option go_package = "./saunapb";
 
